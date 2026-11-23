@@ -1,0 +1,92 @@
+/* The SST page's page-wide adjustments to the shared SSB sections. */
+
+/* every CTA at the medium weight (the design system sets them semibold) */
+html body [data-slot='button'] { font-weight: var(--font-weight-medium) !important; }
+
+/* the FAQ's questions a step smaller: 17px on desktop, 15px on a phone */
+html body .dkf-q-text { font-size: 1.0625rem; line-height: 1.4; letter-spacing: -0.01em; }
+html body .dkf-q button { padding: var(--space-5) 0; }
+@media (width < 672px) { html body .dkf-q-text { font-size: 0.9375rem; } html body .dkf-q button { padding: var(--space-4) 0; } }
+
+/* ── the footer: the brand at the left, the links grouped at the right ── */
+html body .dkft-grid { grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: var(--space-12); }
+html body .dkft-logo { filter: none !important; height: 2.5rem; }
+html body .dkft-brand > :first-child { filter: none !important; }
+html body .dkft-nav { display: grid; grid-template-columns: repeat(3, auto); justify-content: end; gap: var(--space-16, 4rem); }
+html body .dkft-col { padding-top: 0; }
+html body .dkft-col-title { margin-bottom: var(--space-4); font-size: var(--type-caption-size); font-weight: var(--font-weight-semibold); letter-spacing: 0.12em; text-transform: uppercase; }
+html body .dkft-col ul { gap: var(--space-2-5, 10px); }
+html body .dkft-col a { font-size: var(--type-body-sm-size) !important; line-height: 1.4 !important; }
+html body .dkft-place { font-size: var(--type-body-sm-size); }
+html body .dkft-address { font-size: var(--type-caption-size); line-height: 1.6; }
+@media (width < 1056px) {
+  html body .dkft-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-10); }
+  html body .dkft-nav { justify-content: start; gap: var(--space-10); }
+}
+@media (width < 672px) {
+  html body .dkft-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8) var(--space-6); }
+  html body .dkft-nav > .dkft-col:last-child { grid-column: 1 / -1; }
+}
+
+/* SSB's deck tokens that are faint greens (too pale for the hue shift): their SST blue equivalents */
+:root {
+  --pg-tile: var(--color-sst-light-2);
+  --pg-mint-wash: var(--color-sst-light-2);
+  --pg-mint-wash-deep: var(--color-sst-light-3);
+  --pg-card-edge: var(--color-neutral-light-4, #ececec);
+}
+
+/* ── one line-height ladder for every header on the page ── */
+html body main h1 { line-height: 1.14 !important; }
+html body main h2 { line-height: 1.22 !important; }
+html body main h3, html body main h4 { line-height: 1.32 !important; }
+html body main h2 .h-tail, html body main h2 span { line-height: inherit; }
+
+/* the PPO students follow the companies' ticker closely */
+html body .ss-pull [data-slot='section'][data-density='roomy'] { padding-top: var(--space-8); }
+@media (width < 672px) { html body .ss-pull [data-slot='section'][data-density='roomy'] { padding-top: var(--space-6); } }
+/* the placements card's section ends where the ticker begins */
+html body #placements [data-slot='section'][data-density='roomy'] { padding-bottom: var(--space-10); }
+
+/* ── the closing band's and the footer's CTAs: Apply in SST blue; the outline quiet, no fill ── */
+html body .dkc .dkc-apply { background: var(--color-sst-light-9) !important; border-color: var(--color-sst-light-9) !important; color: #fff !important; }
+html body .dkc .dkc-apply:hover { background: var(--color-sst-light-10) !important; }
+html body .dkc .dkc-brochure, html body .dkc .dkc-brochure:is(:hover, :focus-visible) { background: transparent !important; border: 1px solid rgb(255 255 255 / 0.4) !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+html body .dkc .dkc-brochure:hover { border-color: rgb(255 255 255 / 0.7) !important; }
+html body .dkc-actions { align-items: center; }
+html body .dkft .dkft-brochure, html body .dkft .dkft-brochure:is(:hover, :focus-visible) { border: 1px solid rgb(255 255 255 / 0.3) !important; }
+html body .dkft .dkft-brochure:hover { border-color: rgb(255 255 255 / 0.6) !important; background: transparent !important; }
+html body .dkft-actions { align-items: center; gap: var(--space-3); }
+html body .dkft-actions > * { min-width: 9.5rem; justify-content: center; }
+
+/* ── the footer's content on the hero's margins: its frame already sits where the hero's does (16px
+   in), so its content takes the hero's inner padding (64px; 24 on a tablet, 16 on a phone) ── */
+html body .dkft > [data-slot='container'], html body .dkft > div:first-child { max-width: none; padding-inline: var(--space-16); }
+@media (width < 1056px) { html body .dkft > [data-slot='container'], html body .dkft > div:first-child { padding-inline: var(--space-6); } }
+@media (width < 672px) { html body .dkft > [data-slot='container'], html body .dkft > div:first-child { padding-inline: var(--space-4); } }
+
+/* ── person cards (PPO, mentors, team): between the two earlier takes, four and a quarter in view on
+   desktop, from the page's left margin to the window's edge (the card scales its type to its slot) ── */
+@media (width >= 1056px) {
+  html body .fc-grid:not([data-kind='meet']) { grid-auto-columns: calc((100vw - (max(0px, (100vw - var(--size-container-max)) / 2) + var(--space-gutter)) - 4 * var(--space-4)) / 4.25); }
+}
+
+/* the footer's links each with Phosphor's arrow-up-right, quiet, nudging on hover */
+html body .dkft-link { display: inline-flex; align-items: center; gap: 0.3em; }
+html body .dkft-link svg { flex: none; width: 0.875em; height: 0.875em; opacity: 0.55; transition: transform 0.2s ease, opacity 0.2s ease; }
+html body .dkft-link:hover svg { opacity: 1; transform: translate(1px, -1px); }
+
+/* ── one play button everywhere (the films' stills, the video cards, the session cards): a 56px white
+   disc, Phosphor's filled play in SST blue, one soft shadow, the same lift on hover ── */
+html body :is(.lb-play-disc, .tk-play-mark, [data-page='v7'] .sc .tk-play-mark) {
+  display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 50%;
+  background: #fff; color: var(--color-sst-light-9); box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.5);
+  -webkit-backdrop-filter: none; backdrop-filter: none; transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html body :is(.lb-play-disc, .tk-play-mark) svg { width: 1.25rem; height: 1.25rem; translate: 2px 0; }
+html body :is(button, a):hover :is(.lb-play-disc, .tk-play-mark) { scale: 1.08; }
+html body .cx-watch svg { color: var(--color-sst-light-9); }
+@media (width < 672px) {
+  html body :is(.lb-play-disc, .tk-play-mark) { width: 3rem; height: 3rem; }
+  html body :is(.lb-play-disc, .tk-play-mark) svg { width: 1.125rem; height: 1.125rem; }
+}

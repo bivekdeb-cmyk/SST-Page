@@ -1,0 +1,160 @@
+/* The SST first fold (SstHero): SSB's hero frame (hero-frame.css: .hf, .hf-frame, .hf-film, the entrance)
+   with SST's layout over it. The frame keeps the film dark under the copy: the light page round it, the
+   type white on the film. */
+
+/* a company: its mark in a rounded box, its name beside it (used across the page) */
+.cmk { display: inline-flex; align-items: center; gap: var(--space-2-5, 10px); min-width: 0; color: var(--content-primary); }
+.cmk-box { display: grid; flex: none; place-items: center; width: 2.25rem; height: 2.25rem; overflow: hidden; border-radius: var(--radius-md); background: #fff; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06); }
+.cmk-box img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cmk-box[data-mono] { box-shadow: none; }
+.cmk-box[data-mono] > span { font-size: 1rem; line-height: 1; font-weight: var(--font-weight-semibold); color: #fff; }
+.cmk-name { overflow: hidden; font-size: var(--type-label-size); line-height: 1.3; font-weight: var(--font-weight-medium); white-space: nowrap; text-overflow: ellipsis; }
+.cmk[data-size='sm'] .cmk-box { width: 1.75rem; height: 1.75rem; border-radius: 6px; }
+.cmk[data-size='sm'] .cmk-box[data-mono] > span { font-size: 0.8125rem; }
+.cmk[data-size='sm'] .cmk-name { font-size: var(--type-body-sm-size); }
+.cmk[data-size='lg'] .cmk-box { width: 2.75rem; height: 2.75rem; }
+.cmk[data-size='lg'] .cmk-name { font-size: var(--type-body-size); }
+
+/* ── the frame ── */
+.sh-frame { align-items: stretch; }
+@media (width >= 1056px) {
+  .sh-frame { min-height: max(40rem, calc(100svh - var(--sn-h, 69px) - var(--hf-bar, 2.25rem) - var(--space-4))); }
+}
+/* a longer, deeper fade: the copy and the highlights both sit on it */
+.sh-fade { background: linear-gradient(to bottom, rgb(0 0 0 / 0.15) 0%, transparent 22%, rgb(0 0 0 / 0.35) 48%, rgb(0 0 0 / 0.86) 74%, #000 100%) !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; -webkit-mask-image: none !important; mask-image: none !important; }
+
+.sh-body { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--space-10); width: 100%; padding: 0 var(--space-16) var(--space-14, 3.5rem); color: var(--on-image-ink); }
+.sh-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: start; gap: var(--space-12); }
+
+/* the copy: the title, the actions, the intake line */
+.sh-title { max-width: 40rem; margin: 0; color: #fff; font-size: clamp(2.5rem, 4.4vw, 4rem); line-height: 1.14; letter-spacing: -0.025em; font-weight: var(--font-weight-semibold); text-wrap: balance; }
+.sh-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+.sh-actions svg { width: 1.125rem; height: 1.125rem; }
+.sh .sh-secondary { background: rgb(255 255 255 / 0.96); color: var(--color-neutral-light-12, #171717); border-color: transparent; }
+.sh .sh-secondary:hover { background: #fff; }
+.sh-note { display: inline-flex; align-items: center; gap: var(--space-2); margin: var(--space-5) 0 0; font-size: var(--type-body-sm-size); line-height: 1.4; font-weight: var(--font-weight-medium); color: rgb(255 255 255 / 0.88); }
+.sh-note svg { width: 1rem; height: 1rem; color: var(--color-sst-dark-11, #80b5ff); }
+
+/* the side: two lines right-aligned, then the leaders drifting by, mark and name on glass */
+.sh-side { align-items: flex-end; text-align: right; }
+.sh-kicker { margin: 0; font-size: 1.125rem; line-height: 1.4; font-weight: var(--font-weight-medium); color: #fff; }
+.sh-side-title { margin: var(--space-1) 0 var(--space-4); font-size: var(--type-body-size); line-height: 1.4; color: rgb(255 255 255 / 0.8); }
+.sh-leaders { width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); }
+.sh-leaders-track { display: flex; width: max-content; animation: sh-drift 32s linear infinite; }
+.sh-leaders:hover .sh-leaders-track { animation-play-state: paused; }
+.sh-leaders-set { display: flex; align-items: center; gap: var(--space-8); margin: 0; padding: 0 var(--space-8) 0 0; list-style: none; }
+.sh-leaders-set > li { flex: none; display: flex; align-items: center; height: 2.5rem; }
+/* the full logos in white, as the live page draws them on its film */
+.sh-leaders-set img { display: block; height: 1.5rem; width: auto; max-width: 8.5rem; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.92; }
+@keyframes sh-drift { to { transform: translateX(-50%); } }
+
+/* the highlights: a band of four cards right under the first fold */
+.shl { padding: var(--space-6) 0 0; background: var(--surface-page); }
+.shl-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.shl-card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-5) var(--space-5) var(--space-6); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--surface-default); }
+.shl-icon { width: 1.5rem; height: 1.5rem; margin-bottom: var(--space-2); color: var(--color-sst-light-9); }
+.shl-title { margin: 0; font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.01em; font-weight: var(--font-weight-medium); color: var(--content-primary); }
+.shl-text { margin: 0; font-size: var(--type-body-sm-size); line-height: 1.5; color: var(--content-secondary); }
+@media (width < 1056px) { .shl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (width < 672px) {
+  .shl { padding-top: var(--space-4); }
+  .shl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+  .shl-title { font-size: 1rem; }
+  .shl-text { font-size: var(--type-caption-size); }
+  .shl-card { padding: var(--space-4); }
+}
+@media (prefers-reduced-motion: reduce) { .sh-leaders-track { animation: none; } }
+
+/* tablets: the side under the copy, left-aligned; the highlights two by two */
+@media (width < 1056px) {
+  .sh-frame { padding-top: min(46svh, 24rem); }
+  .sh-fade { background: linear-gradient(to bottom, transparent 10%, rgb(0 0 0 / 0.65) 30%, rgb(0 0 0 / 0.94) 48%, #000 100%) !important; }
+  .sh-body { gap: var(--space-8); padding: 0 var(--space-6) var(--space-6); }
+  .sh-main { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+  .sh-side { align-items: flex-start; text-align: left; }
+}
+/* phones: full-width actions; the highlights compact */
+@media (width < 672px) {
+  .sh-frame { padding-top: min(40svh, 18rem); }
+  .sh-body { gap: var(--space-6); padding: 0 var(--space-4) var(--space-4); }
+  .sh-title { font-size: 2.125rem; }
+  .sh-actions { display: grid; width: 100%; margin-top: var(--space-6); }
+  .sh-actions > * { width: 100%; justify-content: center; }
+  .sh-kicker, .sh-side-title { font-size: var(--type-body-sm-size); }
+}
+
+/* hero-frame.css names its grid areas (copy, side) for its own body; this body places them itself */
+.sh-main > .sh-copy { grid-area: auto; grid-column: 1; grid-row: 1; }
+.sh-main > .sh-side { grid-area: auto; grid-column: 2; grid-row: 1; justify-content: flex-start; padding-top: 0.35rem; }
+@media (width < 1056px) { .sh-main > .sh-side { grid-column: 1; grid-row: 2; } }
+
+/* the copy and the side: their own columns (not hero-frame's .hf-copy/.hf-side, which phones dissolve),
+   rising in after the frame settles, as HeroFrame's do */
+.sh-copy { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; animation: hf-rise 700ms var(--motion-easing-expressive-entrance, cubic-bezier(0.2, 0.7, 0.2, 1)) 250ms both; }
+.sh-side { display: flex; flex-direction: column; min-width: 0; animation: hf-rise 700ms var(--motion-easing-expressive-entrance, cubic-bezier(0.2, 0.7, 0.2, 1)) 400ms both; }
+@media (prefers-reduced-motion: reduce) { .sh-copy, .sh-side { animation: none; } }
+
+/* tablets and phones: the film fills the top of the frame (the room above the copy) and fades into the
+   black under the copy, wherever the copy starts */
+@media (width < 1056px) {
+  .sh { --sh-top: min(46svh, 24rem); }
+  .sh .sh-frame { padding-top: var(--sh-top); }
+  .sh .hf-film { inset: 0 0 auto 0; height: calc(var(--sh-top) + 8rem); object-fit: cover; object-position: 50% 30%; }
+  .sh .sh-fade { background: linear-gradient(to bottom, transparent 0, transparent calc(var(--sh-top) - 6rem), rgb(0 0 0 / 0.7) calc(var(--sh-top) + 1rem), #000 calc(var(--sh-top) + 7rem)) !important; }
+}
+@media (width < 672px) {
+  .sh { --sh-top: min(40svh, 18rem); }
+}
+/* hero-frame.css puts the light tone's film in the flow on phones; this hero keeps it behind the copy */
+.sh .hf-film { position: absolute; z-index: -2; }
+@media (width < 672px) { .hf.sh { padding: 0 var(--space-2) var(--space-2); } .sh .sh-frame { border-radius: var(--radius-lg); } }
+
+/* ── the first fold's grid: the title with the leaders centred on its line; the line, actions and
+   intake under the title ── */
+.sh-main { grid-template-columns: minmax(0, 1fr) minmax(0, 28rem); grid-template-areas: 'title side' 'rest .'; align-items: end; row-gap: 0; }
+.sh-main > .sh-title { grid-area: title; align-self: end; }
+.sh-main > .sh-side { grid-area: side; grid-column: auto; grid-row: auto; align-self: center; padding-top: 0; }
+.sh-rest { grid-area: rest; display: flex; flex-direction: column; align-items: flex-start; animation: hf-rise 700ms var(--motion-easing-expressive-entrance, cubic-bezier(0.2, 0.7, 0.2, 1)) 300ms both; }
+.sh-title { animation: hf-rise 700ms var(--motion-easing-expressive-entrance, cubic-bezier(0.2, 0.7, 0.2, 1)) 200ms both; }
+.sh-sub { max-width: 36rem; margin: var(--space-4) 0 0; font-size: 1.125rem; line-height: 1.55; color: rgb(255 255 255 / 0.82); }
+.sh-actions { margin-top: var(--space-8); }
+.sh-note { margin-top: var(--space-5); font-size: var(--type-body-size); line-height: 1.5; }
+.sh-note svg { width: 1.125rem; height: 1.125rem; }
+/* the side's two lines at one size: the first the statement, the second its quieter lead-in */
+.sh-kicker, .sh-side-title { font-size: 1.125rem; line-height: 1.45; }
+.sh-kicker { font-weight: var(--font-weight-medium); color: #fff; }
+.sh-side-title { margin: 0 0 var(--space-5); font-weight: var(--font-weight-regular, 400); color: rgb(255 255 255 / 0.72); }
+.sh-leaders-set img { height: 1.875rem; max-width: 10rem; }
+@media (prefers-reduced-motion: reduce) { .sh-rest, .sh-title { animation: none; } }
+@media (width < 1056px) {
+  .sh-main { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'title' 'rest' 'side'; row-gap: var(--space-8); }
+  .sh-main > .sh-side { align-self: start; }
+}
+@media (width < 672px) {
+  .sh-sub { font-size: var(--type-body-size); }
+  .sh-kicker, .sh-side-title { font-size: var(--type-body-size); }
+  .sh-note { font-size: var(--type-body-sm-size); }
+  .sh-leaders-set img { height: 1.5rem; }
+}
+
+/* the line under the title: two lines, broken where the copy breaks */
+.sh-sub { max-width: none; white-space: pre-line; }
+@media (width < 672px) { .sh-sub { white-space: normal; } }
+
+/* ── the first fold, final: the copy (title, line, actions, intake) at the left; the leaders centred
+   against that whole column at the right ── */
+.sh-main { grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); grid-template-areas: 'copy side'; align-items: center; row-gap: 0; }
+.sh-main > .sh-rest { grid-area: copy; }
+.sh-main > .sh-side { grid-area: side; align-self: center; }
+.sh-rest > .sh-title { animation: none; }
+.sh-sub { margin-top: var(--space-6); }
+.sh-actions { margin-top: var(--space-10); }
+.sh-note { margin-top: var(--space-5); }
+@media (width < 1056px) {
+  .sh-main { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'copy' 'side'; row-gap: var(--space-8); }
+  .sh-main > .sh-side { align-self: start; }
+}
+@media (width < 672px) {
+  .sh-sub { margin-top: var(--space-4); }
+  .sh-actions { margin-top: var(--space-6); }
+}

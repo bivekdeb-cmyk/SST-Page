@@ -1,0 +1,1 @@
+- `tour-aerial.jpg`: "NYCU Guangfu Campus Aerial view 02", Wikimedia Commons, CC0 (public domain dedication). A generic aerial for the 3D tour's poster, not SST's campus.
